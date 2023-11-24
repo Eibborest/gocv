@@ -1249,6 +1249,31 @@ func Line(img *Mat, pt1 image.Point, pt2 image.Point, c color.RGBA, thickness in
 	C.Line(img.p, sp1, sp2, sColor, C.int(thickness))
 }
 
+// Line draws a line segment connecting two points.
+//
+// For further details, please see:
+// https://docs.opencv.org/master/d6/d6e/group__imgproc__draw.html#ga7078a9fae8c7e7d13d24dac2520ae4a2
+func LineWithParams(img *Mat, pt1 image.Point, pt2 image.Point, c color.RGBA, thickness int, lineType LineType, shift int) {
+	sp1 := C.struct_Point{
+		x: C.int(pt1.X),
+		y: C.int(pt1.Y),
+	}
+
+	sp2 := C.struct_Point{
+		x: C.int(pt2.X),
+		y: C.int(pt2.Y),
+	}
+
+	sColor := C.struct_Scalar{
+		val1: C.double(c.B),
+		val2: C.double(c.G),
+		val3: C.double(c.R),
+		val4: C.double(c.A),
+	}
+
+	C.LineWithParams(img.p, sp1, sp2, sColor, C.int(thickness), C.int(lineType), C.int(shift))
+}
+
 // Rectangle draws a simple, thick, or filled up-right rectangle.
 // It renders a rectangle with the desired characteristics to the target Mat image.
 //

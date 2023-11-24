@@ -401,6 +401,14 @@ void Line(Mat img, Point pt1, Point pt2, Scalar color, int thickness) {
     cv::line(*img, p1, p2, c, thickness);
 }
 
+void LineWithParams(Mat img, Point pt1, Point pt2, Scalar color, int thickness, int lineType, int shift) {
+    cv::Point p1(pt1.x, pt1.y);
+    cv::Point p2(pt2.x, pt2.y);
+    cv::Scalar c = cv::Scalar(color.val1, color.val2, color.val3, color.val4);
+
+    cv::line(*img, p1, p2, c, thickness, lineType, shift);
+}
+
 void Rectangle(Mat img, Rect r, Scalar color, int thickness) {
     cv::Scalar c = cv::Scalar(color.val1, color.val2, color.val3, color.val4);
     cv::rectangle(
